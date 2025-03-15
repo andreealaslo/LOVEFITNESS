@@ -1,0 +1,172 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "admin",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.13.5",
+      "toolsId": "0531dc20-94d3-4f49-bf45-4202d39a93b2"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      },
+      "mainServiceV2": {
+        "uri": "/v2/catalog/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Flexify-Admin": {
+          "semanticObject": "Flexify",
+          "action": "Admin",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.124.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "admin.i18n.i18n"
+        }
+      },
+      "catalog": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "catalogV2": {
+        "dataSource": "mainServiceV2"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "admin.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false,
+        "path": "admin.view",
+        "transition": "slide",
+        "bypassed": {
+          "target": [
+            "startpage"
+          ]
+        }
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "startpage",
+          "target": "startpage"
+        },
+        {
+					"pattern": "create",
+					"name": "create",
+					"target": "create"
+				},
+        {
+					"pattern": "accept",
+					"name": "accept",
+					"target": "accept"
+				}
+        
+      ],
+      "targets": {
+        "startpage": {
+					"viewName": "StartPage",
+					"viewLevel": 0
+				},
+        "create": {
+          "viewName": "Create",
+          "viewLevel": 1
+				},
+				"accept": {
+          "viewName": "Accept",
+          "viewLevel": 1
+				}
+      }
+    },
+    "rootView": {
+      "viewName": "admin.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "loveFitness"
+  }
+}

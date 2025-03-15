@@ -1,0 +1,56 @@
+<mvc:View
+    controllerName="statisticshistory.controller.StartPage"
+    xmlns="sap.suite.ui.commons"
+    xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+	xmlns:viz="sap.viz.ui5.controls"
+    xmlns:core="sap.ui.core"
+    xmlns:m="sap.m"
+	xmlns:layout="sap.ui.layout" class="viewPadding">
+    <m:Page id="pageb" title="{i18n>title}" showHeader="true">
+        <m:headerContent>
+			<m:Button text="Choose your challenges" type="Emphasized" press="onChallengeButtonPress"></m:Button>
+        </m:headerContent>
+        <m:content>
+    		<l:Grid class="sapUiSmallMarginTop" defaultSpan="L12 M12 S12" width="100%">
+    			<u:Calendar id="calendar2" legend="legend2" width="100%" />
+                <u:CalendarLegend id="legend2" standardItems="Today" />
+				<m:HBox >
+					<m:Text id = "t" class="sapUiSmallMarginLeft" text="Monitor your progress with charts"></m:Text>
+					<core:Icon id = "c" src="sap-icon://bar-chart"/>
+				</m:HBox>
+			<layout:Splitter width="100%" height="90%">
+				<layout:contentAreas>
+					<ChartContainer
+						id="chartContainer"
+						showFullScreen="true"
+						showPersonalization="false"
+						autoAdjustHeight="false"
+						personalizationPress="attachPersonalizationPress"
+						contentChange="attachContentChange"
+						title="See your progress">
+							<dimensionSelectors>
+								<m:Select id="chartTypeSelect" change="onChartTypeChange">
+									<core:Item key="line" text="Workouts Over Time"/>
+									<core:Item key="stacked_column" text="Workouts by Type"/>
+									<core:Item key="bar" text="Total Workout Hours" />
+								</m:Select>
+							</dimensionSelectors>
+							<content>
+								<ChartContainerContent
+									icon="sap-icon://line-chart"
+									title="Line Chart">
+									<content>
+										<viz:VizFrame id="chartContainerVizFrame" height="600px" width="100%"
+							              uiConfig="{applicationSet:'fiori'}"></viz:VizFrame>
+									</content>
+								</ChartContainerContent>
+							</content>
+					</ChartContainer>
+				</layout:contentAreas>
+			</layout:Splitter>
+    	</l:Grid>
+    </m:content>
+    </m:Page>
+</mvc:View>

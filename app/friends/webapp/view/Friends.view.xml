@@ -1,0 +1,162 @@
+<mvc:View controllerName="friends.controller.Friends"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" class="viewPadding">
+    <Page id="pagef" title="{i18n>titlef}">
+        <headerContent>
+            <Button icon="sap-icon://notification-2" text="NEW requests" type="Emphasized" press="onNotificationSight">
+                <customData>
+                    <BadgeCustomData key="badge" value="{notificationModel>/pendingCount}" visible="{= ${notificationModel>/pendingCount} > 0 }"/>
+                </customData>
+            </Button>
+        </headerContent>
+        <content>
+            <ScrollContainer height="100%" width="100%" vertical="true" horizontal="false">
+                <VBox class="sapUiSmallMargin">
+                    <f:Form id="friends" editable="true" visible="{= ${friends>/friendsCount} > 0 }">
+                        <f:toolbar>
+                            <Toolbar>
+                                <Title text="FRIENDS" level="H4"/>
+                            </Toolbar>
+                        </f:toolbar>
+                        <f:layout>
+                            <f:ResponsiveGridLayout/>
+                        </f:layout>
+                        <f:formContainers>
+                            <f:FormContainer>
+                                <f:formElements>
+                                    <f:FormElement>
+                                        <f:fields>
+                                            <Table id="friendsTable" items="{path: 'friends>/Friends'}">
+                                                <columns>
+                                                    <Column hAlign="Left">
+                                                        <Text text="Email" />
+                                                    </Column>
+                                                    <Column hAlign="End">
+                                                        <Text text="Friends since" />
+                                                    </Column>
+                                                    <Column hAlign="End">
+                                                        <Text text="Action" />
+                                                    </Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem>
+                                                        <cells>
+                                                            <Text text="{friends>FRIEND_EMAIL}" />
+                                                            <Text text="{path: 'friends>SINCE', formatter: '.formatter.formatDateWithoutHour'}" textAlign="End"/>
+                                                            <HBox justifyContent="End">
+                                                                <Button icon="sap-icon://physical-activity" tooltip="See friend's workouts" press="onSeeFriendsWorkouts"></Button>
+                                                                <Button icon="sap-icon://sys-cancel-2" tooltip="Unfriend" press="onUnfriend"></Button>
+                                                            </HBox>
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+                                        </f:fields>
+                                    </f:FormElement>
+                                </f:formElements>
+                            </f:FormContainer>
+                        </f:formContainers>
+                    </f:Form>
+
+                    <VBox id="pendingRequestsContainer" visible="{= ${pendingRequestsModel>/pendingCount} > 0 }">
+                        <f:Form id="pendingRequestsForm" editable="false" class="form-spacing">
+                            <f:toolbar>
+                                <Toolbar>
+                                    <Title text="PENDING REQUESTS" level="H4"/>
+                                </Toolbar>
+                            </f:toolbar>
+                            <f:layout>
+                                <f:ResponsiveGridLayout />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement>
+                                            <f:fields>
+                                                <Table id="pendingRequestsTable" items="{pendingRequestsModel>/requests}">
+                                                    <columns>
+                                                        <Column>
+                                                        </Column>
+                                                        <Column hAlign="End">
+                                                        </Column>
+                                                    </columns>
+                                                    <items>
+                                                        <ColumnListItem>
+                                                            <cells>
+                                                                <Text text="{pendingRequestsModel>RECEIVER_EMAIL}" />
+                                                                <HBox justifyContent="End">
+                                                                    <Button text="Cancel Request" press="onCancelRequest"/>
+                                                                </HBox>
+                                                            </cells>
+                                                        </ColumnListItem>
+                                                    </items>
+                                                </Table>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                    </VBox>
+                
+                    <f:Form id="FormDisplay" editable="false" class="form-spacing">
+                        <f:toolbar>
+                            <Toolbar>
+                                <Title text="SEARCH FOR A NEW FRIEND" level="H4"/>
+                                <ToolbarSpacer/>
+                                <Button icon="sap-icon://add-favorite" text="SEND Request" press="onAddNewFriend"></Button>
+                            </Toolbar>
+                        </f:toolbar>
+                        <f:layout>
+                            <f:ResponsiveGridLayout />
+                        </f:layout>
+                        <f:formContainers>
+                            <f:FormContainer>
+                                <f:formElements>
+                                    <f:FormElement label="By Email">
+                                        <f:fields>
+                                            <ComboBox id="emailInput" items="{users>/Users}" required="true">
+                                                <core:ListItem key="{users>email}" text="{users>username}"/>
+                                            </ComboBox>
+                                        </f:fields>
+                                    </f:FormElement>
+                                </f:formElements>
+                            </f:FormContainer>
+                        </f:formContainers>
+                    </f:Form>
+                </VBox>
+
+                <Dialog id="notificationDialog" title="Friendship Requests">
+                    <content>
+                        <Table id="notificationTable" items="{notificationModel>/requests}">
+                            <columns>
+                                <Column>
+                                    <Text text="From" />
+                                </Column>
+                                <Column hAlign="End">    
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{notificationModel>REQUESTER_EMAIL}" />
+                                        <HBox justifyContent="End">
+                                            <Button text="Approve" press="onApproveRequest"/>
+                                            <Button text="Decline" press="onDeclineRequest"/>
+                                        </HBox>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                    <endButton>
+                        <Button text="Close" press="onCloseNotificationDialog" />
+                    </endButton>
+                </Dialog>
+            </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>

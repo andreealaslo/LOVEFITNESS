@@ -1,0 +1,97 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    >
+    <VBox class="sapUiSmallMargin">
+        <f:Form id="FormChange"
+            editable="true">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="USER PROFILE" level="H4"/>
+                    <ToolbarSpacer/>
+                    <core:Icon src="sap-icon://physical-activity" tooltip="Physical Activity" />
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Email">
+                            <f:fields>
+                                <Input  value="{catalogV2>EMAIL}" enabled="false" /> 
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Date of Birth">
+                            <f:fields>
+                                <DatePicker id="dateOfBirthInput" value="{path: 'catalogV2>DATE_OF_BIRTH', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'yyyy-MM-dd', UTC: true}}"  displayFormat="short" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Height (cm)">
+                            <f:fields>
+                                <Input id="heightInput" value="{catalogV2>HEIGHT}" type="Number" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Weight (kg)">
+                            <f:fields>
+                                <Input id="weightInput" value="{catalogV2>WEIGHT}" type="Number" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Level">
+                            <f:fields>
+                                <Input value="{catalogV2>LEVEL}" enabled="false" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+
+        <f:Form id="MedicalAffectionsFormChange" editable="false" class="form-spacing">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="MEDICAL AFFECTIONS" level="H4"/>
+                    <ToolbarSpacer/>
+                    <Button icon="sap-icon://add" press="onMedicalAffectionAdd" tooltip="Add medical affection" />
+                    <Button id="minusButton" icon="sap-icon://less" press="onMedicalAffectionDelete" tooltip="Delete medical affection" />
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement>
+                            <f:fields>
+                                <Table id="medicalAffectionsTableChange" items="{path: 'catalogV2>MEDICAL_AFFECTIONS'}" mode="MultiSelect">
+                                    <columns>
+                                        <Column width="70%">
+                                            <Text text="Description" />
+                                        </Column>
+                                        <Column width="30%">
+                                            <Text text="Muscle Affected" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{catalogV2>MEDICAL_AFFECTION/DESCRIPTION}" />
+                                            </cells>
+                                            <cells>
+                                                <Text text="{catalogV2>MEDICAL_AFFECTION/MUSCLE_AFFECTED/NAME}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+    </VBox>
+</core:FragmentDefinition>

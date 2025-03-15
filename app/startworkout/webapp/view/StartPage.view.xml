@@ -1,0 +1,81 @@
+<mvc:View controllerName="startworkout.controller.StartPage"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:table="sap.ui.table">
+    <Page id="pagea" title="{i18n>title}" showHeader="true">
+        <content>
+        <VBox class="sapUiSmallMargin">
+
+        <f:Form id="FormChoose" editable="false">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="CHOOSE ONE WORKOUT" level="H4"/>
+                    <ToolbarSpacer/>
+                    <core:Icon src="sap-icon://physical-activity" tooltip="Physical Activity" />
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Workout">
+                            <f:fields>
+                                <ComboBox id="comboW" 
+                                          required="true"
+                                          items="{processedWorkouts>/Workouts}" 
+                                          selectionChange="onComboSelectionChange">
+                                <core:Item key="{processedWorkouts>workoutId}" text="{processedWorkouts>name}" />
+                                </ComboBox>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+
+
+         <f:Form id="FormDetails" visible="false" editable="false" class="form-spacing">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="DETAILS" level="H4"/>
+                </Toolbar>
+            </f:toolbar>
+
+                    <f:layout>
+                        <f:ResponsiveGridLayout />
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <f:FormElement label="Place">
+                                    <f:fields>
+                                        <Text id="placeText" />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Type">
+                                    <f:fields>
+                                        <Text id="typeText" />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Exercises">
+                                    <f:fields>
+                                        <VBox id="exercisesList" />
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+
+        <VBox class="button-start">
+                    <Button text="START WORKOUT" type="Emphasized" width="100%" press="onStartWorkout" enabled="{view>/isWorkoutSelected}"/>
+                </VBox>
+    </VBox>
+        </content>
+    </Page>
+</mvc:View>

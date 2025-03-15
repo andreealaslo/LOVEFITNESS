@@ -1,0 +1,77 @@
+<mvc:View
+	controllerName="createworkout.controller.StartPage"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:microchart="sap.suite.ui.microchart">
+	<Page title="{i18n>startpagetitle}" class="sapUiResponsivePadding--header" >
+		<layout:VerticalLayout class="sapUiResponsiveMargin">
+			<Title
+				titleStyle="H3"
+				text="{i18n>subtitle}"
+				class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom"/>
+			<layout:HorizontalLayout allowWrapping="true">
+                <GenericTile
+					class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom"
+					header="{i18n>headerCreateWorkoutTile}"
+					subheader="{i18n>subheaderCreateWorkoutTile}"
+                    press=".onNavToCreateWorkout">
+					<tileContent>
+						<TileContent>
+							<content>
+								<ImageContent src="sap-icon://sys-add" />
+							</content>
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+
+				<GenericTile
+					class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom"
+					header="{i18n>headerMyWorkoutsTile}"
+					subheader="{i18n>subheaderMyWorkoutsTile}"
+                    press=".onNavToMyWorkouts">
+					<tileContent>
+						<TileContent>
+							<content>
+								<NumericContent
+                                    value="{processedWorkouts>/count}"
+									icon="sap-icon://physical-activity"/>
+							</content>
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+
+                 <GenericTile
+					class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom"
+					header="{i18n>headerInspirationalWorkoutsTile}"
+					subheader="{i18n>subheaderInspirationalWorkoutsTile}"
+                    press=".onNavToInspirationalWorkouts">
+					<tileContent>
+						<TileContent>
+							<content>
+								<NumericContent
+                                    value="{processedInspirationalWorkouts>/count}"
+									icon="sap-icon://physical-activity"/>
+							</content>
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+
+                 <GenericTile
+					class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom"
+					header="{i18n>headerExercisesTile}"
+					subheader="{i18n>subheaderExercisesTile}"
+                    press=".onNavToExercises">
+					<tileContent>
+						<TileContent>
+							<content>
+									
+							</content>
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+
+			</layout:HorizontalLayout>
+		</layout:VerticalLayout>
+	</Page>
+</mvc:View>

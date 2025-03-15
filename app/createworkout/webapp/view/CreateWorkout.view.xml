@@ -1,0 +1,119 @@
+<mvc:View controllerName="createworkout.controller.CreateWorkout"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc">
+    <ScrollContainer height="100%" width="100%" vertical="true" horizontal="false">
+    <VBox class="sapUiSmallMargin">
+        <f:Form id="create" editable="true">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="CREATE WORKOUT" level="H4"/>
+                    <ToolbarSpacer/>
+                    <core:Icon src="sap-icon://physical-activity" tooltip="Physical Activity"/>
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout/>
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Name" >
+                            <f:fields>
+                                <Input id="nameInput" required="true"/>
+                            </f:fields>
+                        </f:FormElement>
+                        
+                        <f:FormElement label="Place">
+                            <f:fields>
+                                <ComboBox id="placeInput" items="{catalogV2>/WORKOUT_PLACES}" required="true">
+                                    <core:ListItem key="{catalogV2>ID}" text="{catalogV2>PLACE}"/>
+                                </ComboBox>
+                            </f:fields>
+                        </f:FormElement>
+                        
+                        <f:FormElement label="Type">
+                            <f:fields>
+                                <ComboBox id="typeInput" items="{catalogV2>/WORKOUT_TYPES}" required="true">
+                                    <core:ListItem key="{catalogV2>ID}" text="{catalogV2>TYPE}"/>
+                                </ComboBox>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+
+        <f:Form id="exercises" editable="true" class="form-spacing">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="CONFIGURE EXERCISES" level="H4"/>
+                    <ToolbarSpacer/>
+                    <Button icon="sap-icon://add" tooltip="Add exercise" press="onAddExercise" type="Transparent"/>
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout/>
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement >
+                            <f:fields>
+                                 <Table id="exerciseDataTable" items="{path: 'processedExercisesModel>/processedExercises', sorter: {path: 'name', group: true}}">
+                                    <columns>
+                                        <Column hAlign="Center">
+                                            <Text text="Reps" />
+                                        </Column>
+                                        <Column hAlign="Center">
+                                            <Text text="Weight" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{processedExercisesModel>reps}" />
+                                                <Text text="{processedExercisesModel>weight}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+
+        <f:Form id="actions" editable="true" class="form-spacing">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="ACTIONS" level="H4"/>
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout/>
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement>
+                            <f:fields>
+                                <Button text="SAVE WORKOUT" type="Emphasized" press="onSaveEntireWorkout"></Button>
+                            </f:fields>
+                        </f:FormElement>
+                        
+                        <f:FormElement >
+                            <f:fields>
+                                <Button text="Clear all configuration" press="onClearConfiguration"></Button>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+    </VBox>
+    </ScrollContainer>
+</mvc:View>

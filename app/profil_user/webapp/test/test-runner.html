@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>QUnit Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.17.2.css">
+    <script src="https://code.jquery.com/qunit/qunit-2.17.2.js"></script>
+    <script src="https://sapui5.hana.ondemand.com/1.123.1/resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_fiori_3"
+            data-sap-ui-libs="sap.ui.core,sap.m"
+            data-sap-ui-compatVersion="edge"
+            data-sap-ui-resourceroots='{"profiluser": "../"}'>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sinon.js/9.0.2/sinon.min.js"></script>
+    <!-- Load controller-specific tests -->
+    <script src="controller/AppEditButton.controller.test.js"></script>
+    <script src="controller/AppSaveButton.controller.test.js"></script>
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+</body>
+</html>

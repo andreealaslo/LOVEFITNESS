@@ -1,0 +1,177 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "aplicatieaparate",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.13.1",
+      "toolsId": "ab23a5dc-c79b-418a-815f-fa2b4b8cc7f3"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      },
+      "mainServiceV2": {
+				"uri": "/v2/catalog/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Flexify-Aparate": {
+          "semanticObject": "Flexify",
+          "action": "Aparate",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.122.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "aplicatieaparate.i18n.i18n"
+        }
+      },
+      "catalog": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "catalogV2":{
+        "dataSource": "mainServiceV2"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "aplicatieaparate.view",
+        "controlAggregation": "pages",
+        "controlId": "fcl",
+        "clearControlAggregation": false,
+        "transition": "slide"
+      },
+      "routes": [
+        {
+					"pattern": ":layout:",
+					"name": "list",
+					"target": [
+						"list"
+					]
+				},
+        {
+					"pattern": "detail/{fitnessMachine}/{layout}",
+					"name": "detail",
+					"target": [
+						"list",
+						"detail"
+					]
+				},
+        {
+					"pattern": "edit/{fitnessMachine}/{layout}",
+					"name": "edit",
+					"target": [
+						"list",
+						"edit"
+					]
+				}
+      ],
+      "targets": {
+        "list": {
+					"viewName": "List",
+					"controlAggregation": "beginColumnPages",
+          "viewId": "list"
+				},
+        "detail": {
+					"viewName": "Detail",
+					"controlAggregation": "midColumnPages",
+          "viewId": "detail"
+				},
+        "edit": {
+					"viewName": "Edit",
+					"controlAggregation": "midColumnPages",
+          "viewId": "edit"
+				}
+      }
+    },
+    "rootView": {
+      "viewName": "aplicatieaparate.view.FlexibleColumnLayout",
+      "type": "XML",
+      "async": true,
+      "id": "fcl"
+    }
+  },
+  "sap.cloud": {
+      "public": true,
+      "service": "loveFitness"
+  }
+}

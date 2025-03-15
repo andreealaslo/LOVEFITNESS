@@ -1,0 +1,73 @@
+<mvc:View controllerName="createworkout.controller.Inspirational"
+    xmlns="sap.uxap"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form">
+    <m:App id="detailsP">
+        <m:pages>
+        
+        <ObjectPageLayout id="ObjectPageLayout"
+					alwaysShowContentHeader="false"
+					preserveHeaderStateOnScroll="false"
+					showTitleInHeaderContent="true"
+					headerContentPinnable="true"
+					sections="{path: 'processedInspirationalWorkouts>/Workouts', templateShareable: true}">
+				<headerTitle>
+					<ObjectPageDynamicHeaderTitle>
+						<expandedHeading>
+							<m:Title text="INSPIRATIONAL WORKOUTS" wrapping="true" class="sapUiSmallMarginEnd"/>
+						</expandedHeading>
+
+						<snappedHeading>
+							<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+								<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+									<m:Title text="INSPIRATIONAL WORKOUTS" wrapping="true" class="sapUiTinyMarginEnd"/>
+								</m:FlexBox>
+							</m:FlexBox>
+						</snappedHeading>
+
+                        <actions>
+							<m:Button
+									text="Make an inspirational workout yours"
+									type="Emphasized"
+									press="onMakeInspirationalWorkoutYours"/>
+						</actions>
+					</ObjectPageDynamicHeaderTitle>
+				</headerTitle>
+            
+			<sections>
+                    <ObjectPageSection title="Workout: {processedInspirationalWorkouts>name}" subSections="{path: 'processedInspirationalWorkouts>exercises', templateShareable: true}">
+                        <subSections>
+                            <ObjectPageSubSection title="Exercise: {processedInspirationalWorkouts>sPairNameGrouped}: {processedInspirationalWorkouts>numberOfSets}" class="customSubSectionTitle">
+                                <blocks >
+                                <layout:VerticalLayout width="100%" >
+                                    <m:Table items="{path: 'processedInspirationalWorkouts>details', templateShareable: true}" width="100%" >
+                                        <m:columns>
+                                            <m:Column>
+                                                <m:Label text="Number of Reps"/>
+                                            </m:Column>
+                                            <m:Column>
+                                                <m:Label text="Weight"/>
+                                            </m:Column>
+                                        </m:columns>
+                                        <m:items>
+                                            <m:ColumnListItem>
+                                                <m:cells>
+                                                    <m:Text text="{processedInspirationalWorkouts>reps}"/>
+                                                    <m:Text text="{processedInspirationalWorkouts>weight}"/>
+                                                </m:cells>
+                                            </m:ColumnListItem>
+                                        </m:items>
+                                    </m:Table>
+                                    </layout:VerticalLayout>
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+                </sections>
+	</ObjectPageLayout>
+    </m:pages>
+    </m:App>
+</mvc:View>

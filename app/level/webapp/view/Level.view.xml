@@ -1,0 +1,49 @@
+<mvc:View controllerName="level.controller.Level"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" class="viewPadding">
+    <Page id="pagel" title="{i18n>titlel}">
+        <headerContent>
+            <Button text="LEVEL POINTS" type="Emphasized" press="onDisplayPoints"></Button>
+            <core:Icon src="sap-icon://drill-up"></core:Icon>
+        </headerContent>
+        <content>
+            <ScrollContainer height="100%" width="100%" vertical="true" horizontal="false">
+                <VBox class="levelContainer" alignItems="Center" justifyContent="Center">
+                    <Text text="{/userLevel}" class="levelCircle"/>
+                    <Text id="badge" text="{/userBadge}" class="badgeText"/>
+                </VBox>
+                <VBox class="sapUiSmallMargin">
+                    <HBox class="hbox-space-between">
+                        <Title text="SEE YOUR ACHIEVEMENTS" level="H2"/>
+                        <Button text="ERASE ALL" press="onEraseAll"></Button>
+                    </HBox>
+                    <Table items="{/displayLevelHistory}" class="historyTable">
+                        <columns>
+                            <Column width="77%">
+                                <Text text="Description"/>
+                            </Column>
+                            <Column width="13%">
+                                <Text text="From"/>
+                            </Column>
+                            <Column width="10%">
+                                <Text text="To"/>
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{description}"/>
+                                    <Text text="{oldLevel}"/>
+                                    <Text text="{newLevel}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </VBox>
+            </ScrollContainer>
+        </content>
+    </Page>
+</mvc:View>

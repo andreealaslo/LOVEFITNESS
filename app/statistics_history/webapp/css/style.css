@@ -1,0 +1,48 @@
+/* Enter your custom styles here */
+
+#container-statisticshistory---startpage--t{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#container-statisticshistory---startpage--c{
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+.form-spacing {
+    margin-top: 20px;
+}
+
+.customMessageBoxWidth {
+    width: 350px;
+    height: 90px; 
+}
+
+.customMessageBoxWidthStopped{
+    width: 500px;
+    height: 70px; 
+}
+.customMessageBoxWidthCompleteChallenge{
+    width: 500px;
+    height: 150px; 
+}
+.status{
+    color:#248f24;
+    font-weight: bold;
+}
+
+.customDialogHeight {
+    max-height: 400px; 
+    overflow-y: auto;  
+}
+
+.statusStopped {
+    color: red;
+    font-weight: bold;
+}
+
+.statusDone {
+    color: #248f24;
+    font-weight: bold;
+}

@@ -1,0 +1,20 @@
+<mvc:View controllerName="profiluser.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m">
+    <App id="pageUser">
+        <pages>
+            <Page title="User Profile" id ="page" showHeader="true">
+                <customHeader>
+                    <Bar>
+                        <contentRight>
+                            <Button id="edit" text="Edit" press="handleEditPress" />
+                            <Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress" />
+                            <Button id="cancel" text="Cancel" visible="false" press="handleCancelPress" />
+                        </contentRight>
+                    </Bar>
+                </customHeader>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

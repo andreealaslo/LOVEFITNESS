@@ -1,0 +1,93 @@
+<mvc:View controllerName="createworkout.controller.Manage"
+    xmlns="sap.uxap"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form">
+    <m:App id="detailsP">
+        <m:pages>
+        
+        <ObjectPageLayout id="ObjectPageLayout"
+					alwaysShowContentHeader="false"
+					preserveHeaderStateOnScroll="false"
+					showTitleInHeaderContent="true"
+					headerContentPinnable="true"
+					sections="{path: 'processedWorkouts>/Workouts', templateShareable: true}">
+				<headerTitle>
+					<ObjectPageDynamicHeaderTitle>
+						<expandedHeading>
+							<m:Title text="MY WORKOUTS" wrapping="true" class="sapUiSmallMarginEnd"/>
+						</expandedHeading>
+
+						<snappedHeading>
+							<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+								<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+									<m:Title text="MY WORKOUTS" wrapping="true" class="sapUiTinyMarginEnd"/>
+								</m:FlexBox>
+							</m:FlexBox>
+						</snappedHeading>
+
+                        <actions>
+							<m:Button
+									text="Add new exercise to existing workout"
+									type="Emphasized"
+									press="onAddNewExerciseToWorkout"/>
+							<m:Button
+									text="Delete workout"
+									type="Transparent"
+                                    press="onDeleteWorkout"/>
+						</actions>
+					</ObjectPageDynamicHeaderTitle>
+				</headerTitle>
+            
+			<sections>
+                    <ObjectPageSection title="Workout: {processedWorkouts>name}" subSections="{path: 'processedWorkouts>exercises', templateShareable: true}">
+                        <subSections>
+                            <ObjectPageSubSection title="Exercise: {processedWorkouts>sPairNameGrouped}: {processedWorkouts>numberOfSets}" class="customSubSectionTitle">
+                                <blocks >
+                                <layout:VerticalLayout width="100%" >
+                                    <m:Table items="{path: 'processedWorkouts>details', templateShareable: true}" width="100%" >
+                                        <m:columns>
+                                            <m:Column>
+                                                <m:Label text="Number of Reps"/>
+                                            </m:Column>
+                                            <m:Column hAlign="Center">
+                                                <m:Label text="Weight"/>
+                                            </m:Column>
+                                            <m:Column hAlign="Right">
+                                                <m:Label text="Actions" />
+                                            </m:Column>
+                                        </m:columns>
+                                        <m:items>
+                                            <m:ColumnListItem>
+                                                <m:cells>
+                                                    <m:Text text="{processedWorkouts>reps}"/>
+                                                    <m:Text text="{processedWorkouts>weight}" textAlign="Center"/>
+                                                    <m:HBox justifyContent="End" width="100%">
+                                                        <m:Button icon="sap-icon://edit" tooltip="Edit set" press="onEditSetPress"/>
+                                                        <m:Button icon="sap-icon://delete" tooltip="Delete set" press="onDeleteSetPress"/>
+                                                    </m:HBox>
+                                                </m:cells>
+                                            </m:ColumnListItem>
+                                        </m:items>
+                                    </m:Table>
+                                    </layout:VerticalLayout>
+                                </blocks>
+								<actions>
+									<m:Button
+										icon="sap-icon://add"
+                                        tooltip="Add set"
+                                        type="Transparent"
+										press="onAddSetPress"/>
+						</actions>
+                            </ObjectPageSubSection>
+                            
+                        </subSections>
+                        
+                    </ObjectPageSection>
+                </sections>
+	</ObjectPageLayout>
+    </m:pages>
+    </m:App>
+</mvc:View>

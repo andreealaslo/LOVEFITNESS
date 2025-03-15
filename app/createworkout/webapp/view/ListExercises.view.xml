@@ -1,0 +1,60 @@
+<mvc:View id="_IDGenView1" displayBlock="true" controllerName="createworkout.controller.ListExercises"
+    height="100%"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+    <f:DynamicPage id="dynamicPageId"
+				   toggleHeaderOnTitleClick="false">
+
+		<!-- DynamicPage Content -->
+		<f:content>
+			<Table
+				id="exercisesTable"
+				mode="SingleSelectMaster"
+				itemPress="onListItemPress"
+				updateFinished="onTableUpdateFinished"
+				inset="false"
+				items="{
+					path: 'catalogV2>/EXERCISES'
+				}"
+				class="sapFDynamicPageAlignContent"
+				width="auto"
+				>
+				<headerToolbar>
+					<OverflowToolbar>
+					<Text id="headerText" text="" />
+						<ToolbarSpacer/>
+						<SearchField id = "searchField" liveChange="onSearch" placeholder="Seach..." width="17.5rem"/>
+						<OverflowToolbarButton icon="sap-icon://add" type="Transparent" press="onAdd" ariaHasPopup="Dialog"/>
+						<OverflowToolbarButton icon="sap-icon://sort" type="Transparent" press="onSort"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="12em">
+						
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+						<cells>
+							<ObjectIdentifier title="{catalogV2>NAME}" /> 
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+
+
+
+</mvc:View>

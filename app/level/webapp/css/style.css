@@ -1,0 +1,68 @@
+/* Enter your custom styles here */
+
+.levelContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.levelCircle {
+    
+    width: 300px;
+    height: 300px;
+    border: 5px solid #0774f2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    font-weight: bold;
+    color: black;
+}
+
+.badgeText {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    font-family: 'Arial', sans-serif; 
+}
+
+.historyContainer {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.historyTable {
+    width: 100%;
+}
+
+#container-level---level--badge{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.green-bold {
+    color: green;
+    font-weight: bold;
+}
+
+.red-bold {
+    color: red;
+    font-weight: bold;
+}
+
+.a{
+    margin-right: 8px;
+}
+
+.b{
+    margin-left: 8px;
+}
+
+.hbox-space-between {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

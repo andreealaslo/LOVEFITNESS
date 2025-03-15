@@ -1,0 +1,60 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:table="sap.ui.table"
+    >
+    <Dialog title="Configure exercise" class="sapUiResponsivePadding--header sapUiResponsivePadding--content sapUiResponsivePadding--footer">
+        <f:Form id="createEX" editable="true">
+        <f:layout>
+                <f:ResponsiveGridLayout/>
+            </f:layout>
+            <f:formContainers>
+            <f:FormContainer>
+                <f:FormElement label="Exercise">
+                    <f:fields>
+                        <ComboBox id="comboEX" required="true"
+                            items="{path: 'catalogV2>/EXERCISES'}" selectionChange="onComboSelectionChangeEX">
+                            <core:Item key="{catalogV2>ID}" text="{catalogV2>NAME}" />
+                        </ComboBox>
+                    </f:fields>
+                </f:FormElement>
+                <f:FormElement label="Fitness machine">
+                    <f:fields>
+                        <ComboBox id="comboFM" selectionChange="onComboSelectionChangeFM"
+                            items="{path: 'catalogV2>/FITNESS_MACHINES'}">
+                            <core:Item key="{catalogV2>ID}" text="{catalogV2>NAME}" />
+                        </ComboBox>
+                    </f:fields>
+                </f:FormElement>
+                <f:FormElement label="">
+                    <f:fields>
+                        <Button text="Add a set" type="Emphasized" icon="sap-icon://add" press="onAddSet"/>
+                    </f:fields>
+                </f:FormElement>
+            </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+        <table:Table id="setsTable" enableSelectAll ="false" rows="{path: 'exerciseModel>/sets'}">
+            <table:columns>
+                <table:Column label="Reps">
+                    <table:template>
+                        <Input value="{exerciseModel>reps}" type="Number"/>
+                    </table:template>
+                </table:Column>
+                <table:Column label="Weight">
+                    <table:template>
+                        <Input value="{exerciseModel>weight}" type="Number"/>
+                    </table:template>
+                </table:Column>
+            </table:columns>
+        </table:Table>
+        <endButton>
+            <Button text="Cancel" press="onCancel"/>
+        </endButton>
+        <beginButton>
+            <Button text="SAVE" type="Emphasized" press="onSaveExercise"/>
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

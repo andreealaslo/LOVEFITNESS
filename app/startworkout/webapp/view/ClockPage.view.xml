@@ -1,0 +1,60 @@
+<mvc:View controllerName="startworkout.controller.ClockPage"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:uxap="sap.uxap"
+    xmlns:layout="sap.ui.layout">
+    <Page id="page" title="{i18n>titleClockPage}">
+        <content>
+        
+            <VBox class="sapUiSmallMargin" alignItems="Center" justifyContent="Center">
+                <VBox id="clockContainer" class="clock-container" alignItems="Center" justifyContent="Center">
+                    <Text id="clock" class="clock-text" />
+                </VBox>
+            </VBox >
+            <VBox class="sapUiMediumMarginBeginEnd">
+                <ProgressIndicator
+                id="progressIndicator"
+				class="sapUiSmallMarginBottom"
+				percentValue="0"
+				showValue="false"
+				state="Success" />
+                <Button class="btn" id="pauseButton" text="PAUSE" width="100%"  press="onPause" />
+                <Button class="btn" id="stopButton" text="STOP" type="Emphasized" width="100%" press="onStop" />
+            </VBox>
+           
+            <Table id="exerciseTable" class="tableEx sapFDynamicPageAlignContent" items="{path: 'displayModel>/Exercises', sorter: {path: 'exerciseName', group: true}}" width="auto">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Text id="headerText" text="EXERCISES" />
+                        <ToolbarSpacer />
+                        <OverflowToolbarButton icon="sap-icon://undo" type="Transparent" press="onReset" />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="44%" hAlign="Center">
+                        <Text text="Number of Reps" />
+                    </Column>
+                    <Column hAlign="Center" width="44%">
+                        <Text text="Weight" />
+                    </Column>
+                    <Column width="12%">
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem visible="{= !${displayModel>done} }">
+                        <cells>
+                            <Input value="{displayModel>reps}" />
+                            <Input value="{displayModel>weight}" />
+                            <HBox justifyContent="End">
+                                <Button icon="sap-icon://accept" tooltip="Set Done" press="onSetDone" />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            
+        </content>
+    </Page>
+     
+</mvc:View>

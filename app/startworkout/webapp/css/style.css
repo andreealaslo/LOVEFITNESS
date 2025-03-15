@@ -1,0 +1,71 @@
+/* Enter your custom styles here */
+
+.form-spacing {
+    margin-top: 20px;
+}
+
+.button-start {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#container-startworkout---startworkout--pauseButton-inner{
+    height: 40px;
+}
+
+#container-startworkout---startworkout--pauseButton-content{
+    align-content: center;
+}
+
+#container-startworkout---startworkout--stopButton-inner{
+    height: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#container-startworkout---startworkout--stopButton-content{
+    align-content: center;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.full-width-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.tableEx {
+    margin-top: 30px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.clock-container {
+    width: 200px;
+    height: 200px;
+    border: 5px solid #0774f2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.clock-text {
+    font-size: 36px;
+}
+
+.boldText {
+    font-weight: bold;
+    margin-top:5px;
+}

@@ -1,0 +1,99 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    core:require="{formatter:'profiluser/model/formatter'}">
+    <VBox class="sapUiSmallMargin">
+
+        <!-- User Profile Section -->
+        <f:Form id="FormDisplay" editable="false">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="USER PROFILE" level="H4"/>
+                    <ToolbarSpacer/>
+                    <core:Icon src="sap-icon://physical-activity" tooltip="Physical Activity" />
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Email">
+                            <f:fields>
+                                <Text text="{catalogV2>EMAIL}" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Date of Birth">
+                            <f:fields>
+                                 <Text id="dateOfBirthText" text="{path: 'catalogV2>DATE_OF_BIRTH', formatter: 'formatter.formatDate'}" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Height (cm)">
+                            <f:fields>
+                                <Text text="{catalogV2>HEIGHT}" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Weight (kg)">
+                            <f:fields>
+                                <Text text="{catalogV2>WEIGHT}" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Level">
+                            <f:fields>
+                                <Text text="{catalogV2>LEVEL}" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+
+        <!-- Medical Affections Section -->
+        <f:Form id="MedicalAffectionsForm" editable="false" class="form-spacing">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="MEDICAL AFFECTIONS" level="H4"/>
+                    <ToolbarSpacer/>
+                    <core:Icon src="sap-icon://nurse" tooltip="Medical affections" />
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement>
+                            <f:fields>
+                                <Table id="medicalAffectionsTable" items="{path: 'catalogV2>MEDICAL_AFFECTIONS'}">
+                                    <columns>
+                                        <Column width="70%">
+                                            <Text text="Description" />
+                                        </Column>
+                                        <Column width="30%">
+                                            <Text text="Muscle Affected" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{catalogV2>MEDICAL_AFFECTION/DESCRIPTION}" />
+                                            </cells>
+                                            <cells>
+                                                <Text text="{catalogV2>MEDICAL_AFFECTION/MUSCLE_AFFECTED/NAME}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+        
+    </VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,46 @@
+<mvc:View
+	controllerName="admin.controller.StartPage"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:microchart="sap.suite.ui.microchart">
+	<Page title="{i18n>startpagetitle}" class="sapUiResponsivePadding--header" >
+		<layout:VerticalLayout class="sapUiResponsiveMargin">
+			<Title
+				titleStyle="H3"
+				text="{i18n>subtitle}"
+				class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom"/>
+			<layout:HorizontalLayout allowWrapping="true">
+                <GenericTile
+					class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom"
+                    mode = "LineMode"
+					header="{i18n>headerCreateEntitiesTile}"
+					subheader="{i18n>subheaderCreateEntitiesTile}"
+                    press=".onNavToCreateEntities">
+					<tileContent>
+						<TileContent>
+							<content>
+								<ImageContent src="sap-icon://sys-add" />
+							</content>
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+
+				<GenericTile
+					class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom"
+                    mode = "LineMode"
+					header="{i18n>headerAcceptanceTile}"
+					subheader="{i18n>subheaderAcceptanceTile}"
+                    press=".onNavToAcceptEntities">
+					<tileContent>
+						<TileContent>
+							<content>
+								<ImageContent src="sap-icon://approvals" />
+							</content>
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+			</layout:HorizontalLayout>
+		</layout:VerticalLayout>
+	</Page>
+</mvc:View>

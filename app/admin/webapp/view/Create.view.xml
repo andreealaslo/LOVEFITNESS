@@ -1,0 +1,145 @@
+<mvc:View controllerName="admin.controller.Create"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Page id="pageb" title="{i18n>titleC}" showHeader="true">
+        <headerContent>
+            <core:Icon src="sap-icon://sys-add"></core:Icon>
+        </headerContent>
+        <content>
+    <ScrollContainer height="100%" width="100%" vertical="true" horizontal="false">
+    <VBox class="sapUiSmallMargin">
+        <f:Form id="createFM" editable="true" class="form-spacingfirst">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="CREATE FITNESS MACHINE" level="H4"/>
+                    <ToolbarSpacer/>
+                    <Button text="SAVE" tooltip="Save fitness machine" press="onSaveFitnessMachine" type="Transparent"/>
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout/>
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Name" >
+                            <f:fields>
+                                <Input id="nameFMInput" required="true"/>
+                            </f:fields>
+                        </f:FormElement>
+                        
+                        <f:FormElement label="Description">
+                            <f:fields>
+                                <Input id="descriptionFMInput" required="true"/>
+                            </f:fields>
+                        </f:FormElement>
+                        
+                        <f:FormElement label="Muscle zone">
+                            <f:fields>
+                                <Input id="muscleZoneFMInput" required="true"/>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+
+        <f:Form id="createTT" editable="true" class="form-spacing">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="CONFIGURE TIPS and TRICKS" level="H4"/>
+                    <ToolbarSpacer/>
+                    <Button text="SAVE" tooltip="Save Tips and Tricks" press="onSaveTipsTricks" type="Transparent"/>
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout/>
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="For Fitness Machine">
+                            <f:fields>
+                                  <ComboBox id="FMInput" items="{catalogV2>/FITNESS_MACHINES}" required="true">
+                                    <core:ListItem key="{catalogV2>ID}" text="{catalogV2>NAME}"/>
+                                </ComboBox>
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement label="Description">
+                            <f:fields>
+                                <Input id="descriptionTTInput" required="true"/>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+
+        <f:Form id="createE" editable="true" class="form-spacing">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="CREATE EXERCISE" level="H4"/>
+                    <ToolbarSpacer/>
+                    <Button text="SAVE" tooltip="Save exercise" press="onSaveExercise" type="Transparent"/>
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout/>
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                         <f:FormElement label="Name" >
+                            <f:fields>
+                                <Input id="nameEInput" required="true"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Description">
+                            <f:fields>
+                                <Input id="descriptionEInput" required="true"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Principal muscle group">
+                            <f:fields>
+                                  <ComboBox id="EMGInput" items="{catalogV2>/MUSCLE_GROUPS}" required="true">
+                                    <core:ListItem key="{catalogV2>ID}" text="{catalogV2>NAME}"/>
+                                </ComboBox>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+
+        <f:Form id="createC" editable="true" class="form-spacing">
+            <f:toolbar>
+                <Toolbar>
+                    <Title text="CREATE CHALLENGE" level="H4"/>
+                    <ToolbarSpacer/>
+                    <Button text="SAVE" tooltip="Save challenge" press="onSaveChallenge" type="Transparent"/>
+                </Toolbar>
+            </f:toolbar>
+            <f:layout>
+                <f:ResponsiveGridLayout/>
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="Description">
+                            <f:fields>
+                                <Input id="descriptionCInput" required="true"/>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+    </VBox>
+    </ScrollContainer>
+    </content>
+    </Page>
+</mvc:View>

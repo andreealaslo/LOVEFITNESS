@@ -1,0 +1,230 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "createworkout",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.13.3",
+      "toolsId": "35bcdf25-e51d-41dc-8078-c23ad8168eb8"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      },
+      "mainServiceV2": {
+        "uri": "/v2/catalog/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Flexify-CreateWorkout": {
+          "semanticObject": "Flexify",
+          "action": "CreateWorkout",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.123.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "createworkout.i18n.i18n"
+        }
+      },
+      "catalog": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "catalogV2": {
+        "dataSource": "mainServiceV2"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+				"routerClass": "sap.f.routing.Router",
+				"viewType": "XML",
+				"viewPath": "createworkout.view",
+				"controlId": "app",
+        "controlAggregation": "pages",
+				"clearControlAggregation": false,
+        "transition": "slide",
+				"bypassed": {
+					"target": [
+						"startpage"
+					]
+				},
+				"async": true
+			},
+      "routes": [
+        {
+					"pattern": "",
+					"name": "home",
+					"target": "startpage"
+				},
+				{
+					"pattern": "manage",
+					"name": "manage",
+					"target": "manage"
+				},
+        {
+					"pattern": "inspirational",
+					"name": "inspirational",
+					"target": "inspirational"
+				},
+        {
+					"pattern": "create",
+					"name": "create",
+					"target": "create"
+				},
+        {
+					"pattern": "fcl",
+					"name": "flexible",
+					"target": [
+						"flexible"
+					]
+				},
+        {
+					"pattern": "list",
+					"name": "list",
+					"target": [
+						"list"
+					]
+				},
+        {
+					"pattern": "detail/{exercise}/{layout}",
+					"name": "detail",
+					"target": [
+						"list",
+						"detail"
+					]
+				},
+        {
+					"pattern": "edit/{exercise}/{layout}",
+					"name": "edit",
+					"target": [
+						"list",
+						"edit"
+					]
+				}
+			],
+			"targets": {
+        "startpage": {
+					"viewName": "StartPage",
+					"viewLevel": 0
+				},
+				"manage": {
+          "viewName": "Manage",
+          "viewLevel": 1
+				},
+				"inspirational": {
+          "viewName": "Inspirational",
+          "viewLevel": 1
+				},
+				"create": {
+          "viewName": "CreateWorkout",
+          "viewLevel": 1
+				},
+        "flexible": {
+          "viewName": "FlexibleColumnLayout",
+          "viewId": "flexible",
+          "viewLevel": 1
+				},
+        "list": {
+					"viewName": "ListExercises",
+          "viewId": "list",
+          "viewLevel": 1
+				},
+        "detail": {
+					"viewName": "Detail",
+          "viewId": "detail",
+          "viewLevel": 1
+				},
+        "edit": {
+					"viewName": "EditExercise",
+          "viewId": "edit",
+          "viewLevel": 1
+				}
+			}
+    },
+    "rootView": {
+      "viewName": "createworkout.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    }
+  },
+  "sap.cloud": {
+      "public": true,
+      "service": "loveFitness"
+  }
+}

@@ -1,0 +1,137 @@
+<mvc:View displayBlock="true" controllerName="aplicatieaparate.controller.Edit" height="100%"
+		xmlns="sap.uxap"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:m="sap.m"
+		xmlns:f="sap.f"
+		xmlns:form="sap.ui.layout.form">
+
+	<ObjectPageLayout id="ObjectPageLayoutEdit"
+					 showTitleInHeaderContent="true"
+					alwaysShowContentHeader="false"
+					preserveHeaderStateOnScroll="false"
+					headerContentPinnable="true"
+					isChildPage="true"
+					upperCaseAnchorBar="false">
+				<headerTitle>
+					<ObjectPageDynamicHeaderTitle>
+						<expandedHeading>
+							<m:Input id="nameEditInput" value="{catalogV2>NAME}"/>
+						</expandedHeading>
+
+						<snappedHeading>
+							<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+								<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+									<m:Input value="{catalogV2>NAME}"/>
+								</m:FlexBox>
+							</m:FlexBox>
+						</snappedHeading>
+
+						<navigationActions>
+							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" id="enterFullScreenBtnEdit" tooltip="Enter Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtnEdit" tooltip="Exit Full Screen Mode" visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose"  tooltip="Close middle column" visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+						</navigationActions>
+
+						<actions>
+							<m:Button
+									text="Save"
+									type="Emphasized"
+									press="onSavePress"/>
+							<m:Button
+									text="Cancel"
+									type="Transparent"
+                                    press="handleClose"/>
+						</actions>
+
+					</ObjectPageDynamicHeaderTitle>
+				</headerTitle>
+
+		<sections>
+			<ObjectPageSection title="General Information">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<form:SimpleForm
+								maxContainerCols="2"
+								editable="false"
+								layout="ResponsiveGridLayout"
+								labelSpanL="12"
+								labelSpanM="12"
+								emptySpanL="0"
+								emptySpanM="0"
+								columnsL="1"
+								columnsM="1">
+								<form:content>
+									<m:Label text="Description"/>
+									<m:TextArea id="descriptionEditInput" value="{catalogV2>DESCRIPTION}"/>
+									<m:Label text="Muscle zone"/>
+									<m:Input id="muscleZoneValueInput" value="{catalogV2>MUSCLE_ZONE}"/>
+								</form:content>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="Tips and Tricks">
+				<heading>
+            		<m:HBox class="custom-button-container">
+                         <m:Button id="plusButton" icon="sap-icon://add" type="Transparent" press="onTipsAndTricksAdd" ariaHasPopup="Dialog"/>
+						 <m:Button id="minusButton" icon="sap-icon://less" type="Transparent" press="onTipsAndTricksDelete" ariaHasPopup="Dialog"/>
+                    </m:HBox>
+   				</heading>
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table
+								id="tipsAndTricksTableEdit"
+								items="{
+                                    path: 'catalogV2>TIPS_AND_TRICKS',
+                                    filters: [{
+                                        path: 'APPROVED',
+                                        operator: 'EQ',
+                                        value1: 'true'
+                                    }]
+                                }"
+								mode="MultiSelect">
+								<m:columns>
+									<m:Column />
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{catalogV2>DESCRIPTION}" />
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="Exercises">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table
+								id="exercisesOnFitnessMachineTableEdit"
+								items="{path : 'catalogV2>EXERCISES'}">
+								<m:columns>
+									<m:Column />
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:ObjectIdentifier text="{catalogV2>EXERCISE/NAME}" />
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

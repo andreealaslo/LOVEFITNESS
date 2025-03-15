@@ -1,0 +1,72 @@
+<mvc:View id="_IDGenView1" displayBlock="true" controllerName="aplicatieaparate.controller.List"
+    height="100%"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+    <f:DynamicPage id="dynamicPageId"
+				   toggleHeaderOnTitleClick="false">
+		<f:content>
+			<Table
+				id="fitnessMachineTable"
+				mode="SingleSelectMaster"
+				itemPress="onListItemPress"
+				updateFinished="onTableUpdateFinished"
+				inset="false"
+				items="{
+    				path: 'catalogV2>/FITNESS_MACHINES',
+    				filters: [{
+       					path: 'APPROVED',
+        				operator: 'EQ',
+        				value1: 'true'
+    				}],
+    				sorter: {
+        				path: 'MUSCLE_ZONE',
+        				group: true
+    					}
+					}"
+				class="sapFDynamicPageAlignContent"
+				width="auto"
+				>
+				<headerToolbar>
+					<OverflowToolbar>
+					<Text id="headerText" text="" />
+						<ToolbarSpacer/>
+						<ComboBox id="comboBox" placeholder="Search by..."
+							items="{path: 'comboModel>/options'}" 
+							selectionChange="onComboSelectionChange" >
+							<core:Item key="{comboModel>key}" text="{comboModel>text}" />
+						</ComboBox>
+						<SearchField id = "searchField" liveChange="onSearch" placeholder="Seach by name..." width="17.5rem"/>
+						<OverflowToolbarButton icon="sap-icon://add" type="Transparent" press="onAdd" ariaHasPopup="Dialog"/>
+						<OverflowToolbarButton icon="sap-icon://sort" type="Transparent" press="onSort"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="12em">
+						
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+						<cells>
+							<ObjectIdentifier title="{catalogV2>NAME}" /> 
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Accept"/>
+				<Button type="Reject" text="Reject"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+
+
+
+</mvc:View>
